@@ -33,9 +33,11 @@ class Field(BaseModel):
 @app.post('/get_form')
 def get_templates(fields: List[str]):
     fields_templates = []
+    valid_fields = []
     for field_name in fields:
         valid_field = get_validations(field_name)
         if valid_field:
+            valid_fields.append(valid_field)
             fields = list(filter(lambda field: field.get('name') == valid_field['name'], fields_template))
             if fields:
                 fields_templates.append({
@@ -44,7 +46,7 @@ def get_templates(fields: List[str]):
     if fields_templates:
         return fields_templates
     else:
-        return valid_field
+        return valid_fields
 
 
 def get_validations(field_name):
