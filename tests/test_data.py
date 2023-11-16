@@ -34,5 +34,6 @@ rules_validations = [
     {'id': 7, 'name': 'created_at', 'type': 'date'},
     {'id': 8, 'name': 'email_work', 'type': 'email'},
     {'id': 9, 'name': 'phone_work', 'type': 'phone'},
+    {'id': 11, 'name': 'work', 'type': 'work'},
 
 ]

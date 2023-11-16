@@ -34,11 +34,20 @@ class Field(BaseModel):
 def get_templates(fields: List[str]):
     fields_templates = []
     for field_name in fields:
-        fields = list(filter(lambda field: field.get('name') == field_name, fields_template))
-        fields_templates.append({
-            'fields': fields,
-            'template': list(filter(lambda template: template.get('id') == fields[0]['template_id'], templates))
-        })
-    return fields_templates
+        valid_field = get_validations(field_name)
+        if valid_field:
+            fields = list(filter(lambda field: field.get('name') == valid_field['name'], fields_template))
+            if fields:
+                fields_templates.append({
+                    'template': list(filter(lambda template: template.get('id') == fields[0]['template_id'], templates))
+                })
+    if fields_templates:
+        return fields_templates
+    else:
+        return valid_field
 
 
+def get_validations(field_name):
+    for rule in rules_validations:
+        if rule['name'] == field_name:
+            return rule
