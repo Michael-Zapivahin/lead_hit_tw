@@ -63,9 +63,6 @@ def get_template(fields):
             if field['type'] == valid_field['type'] and field['kind'] == 'field':
                 template_fields.append(field)
 
-    if len(template_fields) == 0:
-        return valid_fields
-
     for template in template_fields:
         if result.get(f"id_{template['template_id']}"):
             result[f"id_{template['template_id']}"] += 1
@@ -79,15 +76,21 @@ def get_template(fields):
             max_id = int(value[3:])
             max_count = result[value]
 
+    result = None
     for template in db.search(query.kind == 'template'):
         if template['id'] == max_id:
-            return {'id': template['id'], 'name': template['name']}
+            result = {'id': template['id'], 'name': template['name']}
+
+    if result:
+        return result
+    else:
+        return valid_fields
 
 
 
 
 init_db()
-print(get_template(['email', 'phone', 'email']))
+print(get_template(['phone']))
 
 
 

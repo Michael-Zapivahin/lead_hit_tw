@@ -3,7 +3,7 @@ from typing import List
 from tinydb import TinyDB, Query
 
 from fastapi import FastAPI
-from pydantic import BaseModel
+
 
 from tests.test_data import fields_template, templates, rules_validations
 
@@ -35,7 +35,6 @@ def init_db():
 @app.post('/get_form')
 def get_templates(fields: List[str]):
     return get_template(fields)
-    # return {'status': 200, 'data': fields}
 
 
 def get_validations(field_name):
@@ -59,9 +58,6 @@ def get_template(fields):
             if field['type'] == valid_field['type'] and field['kind'] == 'field':
                 template_fields.append(field)
 
-    if len(template_fields) == 0:
-        return valid_fields
-
     for template in template_fields:
         if result.get(f"id_{template['template_id']}"):
             result[f"id_{template['template_id']}"] += 1
@@ -75,9 +71,15 @@ def get_template(fields):
             max_id = int(value[3:])
             max_count = result[value]
 
+    result = None
     for template in db.search(query.kind == 'template'):
         if template['id'] == max_id:
-            return {'id': template['id'], 'name': template['name']}
+            result = {'id': template['id'], 'name': template['name']}
+
+    if result:
+        return result
+    else:
+        return valid_fields
 
 
 
