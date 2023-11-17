@@ -1,19 +1,29 @@
-from datetime import date
-from typing import List
+
 from tinydb import TinyDB, Query
 
-from fastapi import FastAPI
-from pydantic import BaseModel
-
-from tests.test_data import fields_template, templates, rules_validations
-
-
-app = FastAPI(
-    title='Defines the forms'
-)
+from tests.test_data import templates, fields_template, rules_validations
 
 db = TinyDB('testdb.json')
 query = Query()
+
+
+#
+# class Rule(BaseModel):
+#     id: int
+#     name: str
+#     type: str
+#
+#
+# class Template(BaseModel):
+#     id: int
+#     name: str
+#
+#
+# class Field(BaseModel):
+#     id: int
+#     name: date
+#     type: str
+#     template_id: int
 
 
 def init_db():
@@ -30,12 +40,6 @@ def init_db():
     for rule in rules_validations:
         rule['kind'] = 'rule'
         db.insert(rule)
-
-
-@app.post('/get_form')
-def get_templates(fields: List[str]):
-    return get_template(fields)
-    # return {'status': 200, 'data': fields}
 
 
 def get_validations(field_name):
@@ -78,6 +82,21 @@ def get_template(fields):
     for template in db.search(query.kind == 'template'):
         if template['id'] == max_id:
             return {'id': template['id'], 'name': template['name']}
+
+
+
+
+init_db()
+print(get_template(['email', 'phone', 'email']))
+
+
+
+
+
+
+
+
+
 
 
 
