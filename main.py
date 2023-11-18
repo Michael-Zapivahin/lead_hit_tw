@@ -1,13 +1,10 @@
-from datetime import date
 from typing import List
 from tinydb import TinyDB, Query
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 import re
-
 from fastapi import FastAPI
 
-
-from tests.test_data import fields_template, templates, rules_validations
+from tests.test_data import fields_template
 
 
 app = FastAPI(
@@ -76,7 +73,3 @@ def get_template(fields):
         return template_id
     else:
         return valid_fields
-
-
-
-

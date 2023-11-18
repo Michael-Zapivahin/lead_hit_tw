@@ -61,10 +61,18 @@ rules_validations = [
 # Телефон передается в стандартном формате +7 xxx xxx xx xx,
 # дата передается в формате DD.MM.YYYY или YYYY-MM-DD.
 
-test_data = [
+test_data_1 = [
                 {"name": "phone", "value": "+7 977 810 87 47"},
                 {"name": "date", "value": "11.09.2023"},
                 {"name": "created_at", "value": "2023-11-17"},
                 {"name": "email", "value": "admin@ya.ru"},
                 {"name": "text", "value": "Hi people."},
+            ]
+
+test_data = [
+                {"name": "wphone", "value": "+7 977 810 87 47"},
+                {"name": "wdate", "value": "11.09.2023"},
+                {"name": "wcreated_at", "value": "2023-11-17"},
+                {"name": "wemail", "value": "admin@ya.ru"},
+                {"name": "wtext", "value": "Hi people."},
             ]
