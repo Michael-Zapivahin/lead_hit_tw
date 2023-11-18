@@ -16,11 +16,6 @@ class Data(BaseModel):
 
 def init_db():
     db.truncate()
-
-    # for template in templates:
-    #     template['kind'] = 'template'
-    #     db.insert(template)
-
     for field in fields_template:
         field['kind'] = 'field'
         db.insert(field)
