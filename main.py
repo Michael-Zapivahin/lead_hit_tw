@@ -1,6 +1,7 @@
 from datetime import date
 from typing import List
 from tinydb import TinyDB, Query
+from pydantic import BaseModel, Field
 
 from fastapi import FastAPI
 
@@ -32,8 +33,13 @@ def init_db():
         db.insert(rule)
 
 
+class Data(BaseModel):
+    name: str
+    value: str
+
+
 @app.post('/get_form')
-def get_templates(fields: List[str]):
+def get_templates(fields: List[Data]):
     return get_template(fields)
 
 
