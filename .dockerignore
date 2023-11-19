@@ -2,6 +2,8 @@
 tests/
 tst/
 venv/
+.git/
+.idea/
 .env
 .gitignore
 test_main.py
