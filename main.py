@@ -35,14 +35,14 @@ def get_validations(field):
     pattern_phone = r"\+?[\d]{1} [\d]{3} [\d]{3} [\d]{2} [\d]{2}"
     pattern_date1 = r'\d{2}.\d{2}.\d{4}'
     pattern_date2 = r'\d{4}-\d{2}-\d{2}'
-    if re.match(pattern_phone, field['value']):
-        return {'name': field['name'], 'type': 'phone'}
-    elif re.match(pattern_date1, field['value']) or re.match(pattern_date2, field['value']):
-        return {'name': field['name'], 'type': 'date'}
-    elif field['value'].find('@') >= 0:
-        return {'name': field['name'], 'type': 'email'}
+    if re.match(pattern_phone, field.value):
+        return {'name': field.name, 'type': 'phone'}
+    elif re.match(pattern_date1, field.value) or re.match(pattern_date2, field.value):
+        return {'name': field.name, 'type': 'date'}
+    elif field.value.find('@') >= 0:
+        return {'name': field.name, 'type': 'email'}
     else:
-        return {'name': field['name'], 'type': 'text'}
+        return {'name': field.name, 'type': 'text'}
 
 
 def get_template(fields):
