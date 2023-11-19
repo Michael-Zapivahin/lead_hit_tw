@@ -7,5 +7,5 @@ venv/
 .env
 .gitignore
 test_main.py
-README.md
+
 
