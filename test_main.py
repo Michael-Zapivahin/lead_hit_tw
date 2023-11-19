@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 
-from app.main import app
+from main import app
 
 from tests.test_data import test_data, test_data_error, test_data_not_find
 

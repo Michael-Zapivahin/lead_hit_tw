@@ -4,8 +4,6 @@ from pydantic import BaseModel
 import re
 from fastapi import FastAPI
 
-from .data import fields_template
-
 
 app = FastAPI(
     title='Defines the forms'
@@ -13,12 +11,6 @@ app = FastAPI(
 
 db = TinyDB('testdb.json')
 query = Query()
-
-
-def init_db():
-    db.truncate()
-    for field in fields_template:
-        db.insert(field)
 
 
 class Data(BaseModel):

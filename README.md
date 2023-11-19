@@ -49,10 +49,6 @@ pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
-Запуск тестов из каталога project/
-```cli
-python test_main.py 
-```
 
 Упаковать приложение в Docker и запустить его по адресу http://localhost/docs
 ```cli
