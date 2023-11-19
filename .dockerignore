@@ -1,0 +1,9 @@
+.pytest_cache/
+tests/
+tst/
+venv/
+.env
+.gitignore
+test_main.py
+README.md
+
